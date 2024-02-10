@@ -1,7 +1,7 @@
 const root = document.getElementById("root");
 
 const width = 15;
-const field = document.createElement("div");
+const canvas = document.createElement("div");
 
 const snakePath = [[Math.floor(width / 2), Math.floor(width / 4)]];
 
@@ -9,7 +9,7 @@ let x = Math.floor(width / 2);
 let y = Math.floor((width * 3) / 4);
 
 const render = () => {
-  field.innerHTML = "";
+  canvas.innerHTML = "";
 
   for (let i = 0; i < width; ++i) {
     const row = document.createElement("div");
@@ -36,14 +36,14 @@ const render = () => {
         }
       }
     }
-    field.appendChild(row);
+    canvas.appendChild(row);
   }
 };
 
 let direction = "START";
 
-const listener = document.addEventListener("keydown", (event) => {
-  console.log("Ello");
+const handleKeyDown = (event) => {
+  console.log("hi");
   switch (event.key) {
     case "ArrowUp":
       direction = direction == "DOWN" ? "DOWN" : "UP";
@@ -58,7 +58,9 @@ const listener = document.addEventListener("keydown", (event) => {
       direction = direction === "LEFT" ? "LEFT" : "RIGHT";
       break;
   }
-});
+};
+
+document.addEventListener("keydown", handleKeyDown);
 
 const startGame = () => {
   const head = [...snakePath[0]];
@@ -93,6 +95,7 @@ const startGame = () => {
       .some(([SnakeX, SnakeY]) => SnakeX === head[0] && SnakeY === head[1])
   ) {
     clearInterval(gameLoop);
+    document.removeEventListener("keydown", handleKeyDown);
   }
 
   snakePath.unshift(head);
@@ -113,8 +116,18 @@ const gameLoop = setInterval(() => {
   render();
 }, 100);
 
+const header = document.createElement("div");
+
 const heading = document.createElement("h1");
 heading.innerText = "Snake Game";
+const a = document.createElement("a");
+a.href = "../index.html";
+const div = document.createElement("div");
+div.innerText = "< go back";
+a.appendChild(div);
 
-root.appendChild(heading);
-root.appendChild(field);
+header.appendChild(a);
+header.appendChild(heading);
+
+root.appendChild(header);
+root.appendChild(canvas);
