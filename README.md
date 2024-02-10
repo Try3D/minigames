@@ -2,9 +2,12 @@
 
 Bunch of games coded in pure HTML, CSS and JS so I don't forget the basics.
 
+**Website:** [minigames-three.vercel.app](https://minigames-three.vercel.app/)
+
 ## Snake
 
-(Snake demo)[/assets/snake.png]
+<img src="./assets/snake.png" alt="drawing" width="500"/>
 
 ## Tower
-(tower demo)[/assets/tower.png]
+
+<img src="./assets/tower.png" alt="drawing" width="500"/>
